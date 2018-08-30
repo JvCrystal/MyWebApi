@@ -30,6 +30,7 @@ namespace MyWebApi
 
         /// <summary>
         /// This method gets called by the runtime. Use this method to add services to the container.
+        /// 服务配置
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
@@ -69,10 +70,14 @@ namespace MyWebApi
                 var cache = new MemoryCache(new MemoryCacheOptions());
                 return cache;
             });
+
+            // 启用Session
+            services.AddSession();
         }
 
         /// <summary>
         /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// 用于应用程序响应HTTP请求，通过向IApplicationBuilder实例添加中间件组件来配置请求管道
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
@@ -98,6 +103,8 @@ namespace MyWebApi
             loggerFactory.AddNLog();
             //引入Nlog配置文件
             env.ConfigureNLog("Nlog.config");
+
+            app.UseSession();
 
             app.UseMvc();
         }

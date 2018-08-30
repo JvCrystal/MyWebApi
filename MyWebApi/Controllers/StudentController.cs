@@ -11,6 +11,9 @@ using NLog;
 
 namespace MyWebApi.Controllers
 {
+    /// <summary>
+    /// 测试缓存
+    /// </summary>
     public class StudentController : Controller
     {
         private readonly MyContext _context;
