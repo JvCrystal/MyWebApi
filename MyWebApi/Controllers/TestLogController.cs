@@ -12,7 +12,7 @@ namespace MyWebApi.Controllers
     /// </summary>
     public class TestLogController : Controller
     {
-        private readonly Logger nlog = LogManager.GetCurrentClassLogger(); //获得日志实;
+        private readonly Logger nlog = LogManager.GetCurrentClassLogger();
 
         // GET api/values
         [HttpGet("{id}")]
