@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.PlatformAbstractions;
 using MyWebApi.Entity;
+using NLog.Extensions.Logging;
+using NLog.Web;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace MyWebApi
@@ -34,13 +36,14 @@ namespace MyWebApi
             services.AddMvc();
 
             #region Swagger
+            //注册Swagger生成器，定义一个和多个Swagger 文档
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info
                 {
                     Version = "v1.1.0",
                     Title = "My WebAPI",
-                    Description = "框架集合",
+                    Description = "一个ASP.NET Core Web API框架例子",
                     TermsOfService = "None",
                     Contact = new Swashbuckle.AspNetCore.Swagger.Contact { Name = "Crystal", Email = "jv_network@outlook.com", Url = "https://www.cnblogs.com/Ingenta/" }
                 });
@@ -58,7 +61,7 @@ namespace MyWebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -66,12 +69,19 @@ namespace MyWebApi
             }
 
             #region Swagger
+            //启用中间件服务生成Swagger作为JSON终结点
             app.UseSwagger();
+            //启用中间件服务对swagger-ui，指定Swagger JSON终结点
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiHelp V1");
             });
             #endregion
+
+            //使用NLog作为日志记录工具
+            loggerFactory.AddNLog();
+            //引入Nlog配置文件
+            env.ConfigureNLog("Nlog.config");
 
             app.UseMvc();
         }
