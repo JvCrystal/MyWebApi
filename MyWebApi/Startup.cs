@@ -38,7 +38,10 @@ namespace MyWebApi
             services.AddDbContext<MyContext>(options =>
             options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss"; // 日期格式化
+            });
 
             #region Swagger
             //注册Swagger生成器，定义一个和多个Swagger 文档
@@ -56,11 +59,11 @@ namespace MyWebApi
                 var basePath = PlatformServices.Default.Application.ApplicationBasePath;
                 var apiXmlPath = Path.Combine(basePath, "APIHelp.xml");
                 var entityXmlPath = Path.Combine(basePath, "EntityHelp.xml");
-                c.IncludeXmlComments(apiXmlPath);
-                //添加对控制器的标签(描述)
-                c.DocumentFilter<SwaggerDocTag>();
+                //添加对控制器、action描述，true的参数主要是为了 显示之前的
+                c.IncludeXmlComments(apiXmlPath, true);
                 //添加对实体的描述
-                c.IncludeXmlComments(entityXmlPath);                
+                c.IncludeXmlComments(entityXmlPath,true);
+         
             });
             #endregion
 
