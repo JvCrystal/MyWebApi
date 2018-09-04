@@ -18,18 +18,17 @@ namespace MyWebApi.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            nlog.Log(NLog.LogLevel.Debug, $"yilezhu测试Debug日志");
-            nlog.Log(NLog.LogLevel.Info, $"yilezhu测试Info日志");
+            nlog.Log(NLog.LogLevel.Debug, $"测试Debug日志");
+            nlog.Log(NLog.LogLevel.Info, $"测试Info日志");
             try
             {
-                throw new Exception($"yilezhu故意抛出的异常");
+                throw new Exception($"故意抛出的异常");
             }
             catch (Exception ex)
             {
-
-                nlog.Log(NLog.LogLevel.Error, ex, $"yilezhu异常的额外信息");
+                nlog.Log(NLog.LogLevel.Error, ex, $"异常的额外信息");
             }
-            return "yilezhu的返回信息";
+            return "返回信息";
         }
 
     }

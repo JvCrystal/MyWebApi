@@ -5,11 +5,8 @@ using System.Text;
 
 namespace MyWebApi.Entity
 {
-    public class Book
+    public class Book : BaseEntity
     {
-
-        [Key]
-        public int Id { get; set; }
 
         public string Name { get; set; }
 

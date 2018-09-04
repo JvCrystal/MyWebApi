@@ -66,7 +66,7 @@ namespace MyWebApi
          
             });
             #endregion
-
+             
             //缓存
             services.AddSingleton<IMemoryCache>(factory =>
             {

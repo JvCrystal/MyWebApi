@@ -5,13 +5,8 @@ using System.Text;
 
 namespace MyWebApi.Entity
 {
-    public class Student
+    public class Student: BaseEntity
     {
-        /// <summary>
-        /// 主键ID
-        /// </summary>
-        [Key]
-        public int Id { get; set; }
 
         /// <summary>
         /// 姓名

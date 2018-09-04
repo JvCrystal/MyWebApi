@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MyWebApi.Entity.Migrations
 {
-    public partial class MyFirstMigration : Migration
+    public partial class FirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,10 +12,12 @@ namespace MyWebApi.Entity.Migrations
                 name: "Books",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
+                    Id = table.Column<string>(nullable: false),
                     Author = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    State = table.Column<int>(nullable: false),
+                    UpdateTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,10 +28,12 @@ namespace MyWebApi.Entity.Migrations
                 name: "Students",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
+                    Id = table.Column<string>(nullable: false),
                     Age = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true)
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    State = table.Column<int>(nullable: false),
+                    UpdateTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

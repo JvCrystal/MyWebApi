@@ -10,8 +10,8 @@ using System;
 namespace MyWebApi.Entity.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20180829092557_MyFirstMigration")]
-    partial class MyFirstMigration
+    [Migration("20180903083410_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,12 +21,18 @@ namespace MyWebApi.Entity.Migrations
 
             modelBuilder.Entity("MyWebApi.Entity.Book", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Author");
 
+                    b.Property<DateTime>("CreateTime");
+
                     b.Property<string>("Name");
+
+                    b.Property<int>("State");
+
+                    b.Property<DateTime>("UpdateTime");
 
                     b.HasKey("Id");
 
@@ -35,12 +41,18 @@ namespace MyWebApi.Entity.Migrations
 
             modelBuilder.Entity("MyWebApi.Entity.Student", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("Age");
 
+                    b.Property<DateTime>("CreateTime");
+
                     b.Property<string>("Name");
+
+                    b.Property<int>("State");
+
+                    b.Property<DateTime>("UpdateTime");
 
                     b.HasKey("Id");
 
